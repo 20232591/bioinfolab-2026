@@ -1,0 +1,112 @@
+    1  cp -pr lab-template lab05
+    2  cd lab05
+    3  cd data
+    4  pwd
+    5  bash src/gc.sh
+    6  ls data
+    7  #!/usr/bin/bash
+    8  # gc.sh — FASTA 파일의 GC 개수와 비율을 출력한다
+    9  # 사용법: bash src/gc.sh
+   10  #!/usr/bin/bash
+   11  # gc.sh — FASTA 파일의 GC 개수와 비율을 출력한다
+   12  # 사용법: bash src/gc.sh
+   13  FILE="data/seq.fasta"
+   14  SEQ=$(grep -v ">" < "$FILE" | tr -d "\n")
+   15  GC=$(echo "$SEQ" | grep -o "[GC]" | wc -l)
+   16  LEN=${#SEQ}
+   17  echo "길이: $LEN"
+   18  echo "GC 개수: $GC"
+   19  clear
+   20  ls data
+   21  echo $?
+   22  clear
+   23  #!/usr/bin/bash
+   24  set -x
+   25  NAME=$1
+   26  mkdir $NAME
+   27  echo "$NAME 폴더를 만들었습니다"
+   28  clear
+   29  bash scr/gc.sh
+   30  clear
+   31  cd lab05
+   32  cd data
+   33  cd
+   34  pwd
+   35  bash src/gc.sh
+   36  ls data
+   37  cd lab05
+   38  bash src/gc.sh
+   39  ls data
+   40  echo $?
+   41  ls xyz
+   42  echo $?
+   43  bash src/mk.sh myproject
+   44  NAME=" my project"
+   45  mkdir $NAME
+   46  mkdir "$NAME"
+   47  src/count.sh
+   48  bash src/count.sh
+   49  cd
+   50  echo $?
+   51  cd lab05
+   52  echo $?
+   53  ls data
+   54  echo $?
+   55  ls nowhere
+   56  echo $?
+   57  grep "xyz" /etc/hostname
+   58  echo $?
+   59  cat /etc/hostname
+   60  echo $?
+   61  bash src/bug1.sh 
+   62  bash src/bug2.sh
+   63  bash src/bug1.sh 
+   64  bash src/bug2.sh
+   65  bash src/bug3.sh
+   66  mkdir "my project"
+   67  echo "테스트" > "my  project/a.txt"
+   68  echo "테스트" > "my project/a.txt"
+   69  ls
+   70  NAME="my project"
+   71  ls $NAME
+   72  ls "$NAME"
+   73  rm -r $NAME
+   74  cd
+   75  cd lab05
+   76  grep -c ">" data/seqs/fasta
+   77  data/seqs.fasta
+   78  cat data/seqs.fasta
+   79  grep -c ">" data/seqs.fasta
+   80  bash src/countseq.sh
+   81  bash src/countseq.sh data/seqs.fasta
+   82  cp data/seqs.fasta data/seqs2.fasta
+   83  grep -c ">" data/seqs2.fasta
+   84  cp data/seqs.fasta data/seqs2.fasta
+   85  bash src/countseq.sh data/seqs2.fasta
+   86  chmod 700 src/countseq.sh
+   87  ./src/countseq.sh
+   88  echo $?
+   89  ./src/countseq.sh data/seqs.fasta
+   90  echo $?
+   91  ./src/countseq.sh nowhere.fasta
+   92  echo $?
+   93  $ ./src/fastainfo.sh data/seqs.fasta
+   94  ./src/fastainfo.sh data/seqs.fasta
+   95  chmod 700 src/fastainfo.sh
+   96  ./src/fastainfo.sg
+   97  ./src/fastainfo.sh
+   98  echo $?
+   99  $ ./src/fastainfo.sh data/seqs.fasta
+  100  chmod 700 src/fastainfo.sh 
+  101  $ ./src/fastainfo.sh data/seqs.fasta
+  102  ./src/fastainfo.sh data/seqs.fasta
+  103  for X in {1..10}; do     echo $X; done
+  104  for F in data/*.fasta; do     echo $F;     grep -c ">" $F; done
+  105  bash src/batchinfo.sh
+  106  ./src/mkproject2.sh
+  107  chmod 700 src/mkproject2.sh
+  108  ./src/mkproject2.sh
+  109  ./src/mkproject2.sh apple
+  110  ./src/mkproject2.sh "my project"
+  111  ./src/mkproject2.sh
+  112  history > history.txt
