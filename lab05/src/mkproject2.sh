@@ -1,21 +1,21 @@
 #!/usr/bin/bash
-#같은 이름의 폴더가 있는지 확인하고 같은 이름의 폴더가 있다면 오류메세지를 낸 뒤 끝낸다.
-set -x
-
-NAME=$1
-mkdir $NAME
-echo "$NAME 폴더를 만들었습니다"
+# mkproject2.sh — 프로젝트 폴더와 그 안의 data, doc, src 폴더를 만든다
+# 사용법: mkproject2.sh <폴더 이름>
 
 if [ -z "$1" ]
 then
-    echo "<사용법>"
+    echo "사용법: $0 <폴더명>"
     exit 1
 fi
- 
-if [ -d "$1" ] 
-then 
-  echo " 오류: 폴더가 이미 있습니다."
-exit 1
 
-fi 
+NAME=$1
 
+if [ -d "$NAME" ]
+then
+    echo "오류: 이미 존재하는 폴더입니다: $NAME"
+    exit 1
+fi
+
+mkdir -p "$NAME/data" "$NAME/doc" "$NAME/src"
+echo "만들어진 구조:"
+ls -R "$NAME"

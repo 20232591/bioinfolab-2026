@@ -1,0 +1,17 @@
+>low1
+atgcgatacg
+>low2
+GGCCggccAT
+
+##GC 비율이 제대로 나오지않는 이유
+#출력된 내용
+$ python3 src/fasta.py data/lower.fasta
+low1 10 0.0
+low2 32 0.188
+역상보 테스트 통과: TCAAGCGTATCGCAT
+
+low1은 길이는 맞지만 비율이 0.0이 나와 g,c를 하나도 인식하지못했음을 알 수 있다.
+low2는 길이도 32로 훨씬 길게 나왔고, 비율도 g,c / 서열개수인데 훨씬 작은 비율이 나와 다 인식하지 못했음을 알 수 있다.
+
+#fasta.py의 read_fasta 한 곳만 고쳐서 서열을 읽을 때 모두 대문자로 바꾸도록한다
+->모두 대문자로 바꿀 때 upper()을 사용해야하는데 06번 1부에서 

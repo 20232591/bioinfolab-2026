@@ -1,0 +1,2 @@
+seqs.fasta 3
+seqs2.fasta 3

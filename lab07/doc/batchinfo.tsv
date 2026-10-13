@@ -1,0 +1,3 @@
+filename	count	total	mean_gc
+data/seqs2.fasta	2	16	0.25
+data/seqs.fasta	3	67	0.504
