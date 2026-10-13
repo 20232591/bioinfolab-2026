@@ -1,0 +1,4 @@
+Help on function gc_content in module __main__:
+
+ggcc__ccoonntteenntt(seq)
+    서열의 GC 비율을 0과 1 사이의 수로 돌려준다.
