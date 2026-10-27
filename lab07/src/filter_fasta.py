@@ -2,7 +2,7 @@ import sys
 from fasta import read_fasta, write_fasta
  
 infile = sys.argv[1]
-minlen = (sys.argv[2])
+minlen = int(sys.argv[2])
 outfile = sys.argv[3]
  
 seqs = read_fasta(infile)

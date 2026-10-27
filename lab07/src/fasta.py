@@ -6,7 +6,7 @@ def read_fasta(filename):
     name = None 
     with open(filename) as f: 
         for line in f: 
-            line = line.upper() 
+            line = line.rstrip().upper()
             if line.startswith(">"): 
                 name = line[1:].split()[0] 
                 seqs[name] = "" 
