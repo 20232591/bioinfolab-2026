@@ -28,7 +28,8 @@ bash src/countseq.sh data/seqs.fasta
 - 새 라이브러리(Biopython 등)를 쓰기 전에 먼저 물어본다.
 - 주석은 한국어로 쓴다.
 - seqkit, blast 등이 없으면 설치하지 말고 알린다 (저장소 루트에서 `bash .devcontainer/check.sh` 로 확인). conda 실습 주차만 예외.
--코드 수정 후에는 항상 제대로 돌아가는지 테스트 코드를 실행한다.
+-코드 수정 후에는 정상적으로 코드가 실행되는지 테스트 코드를 실행한다.
+
 ## 하지 말 것
 - rm 으로 파일을 지우지 않는다.
 - pip install 로 무언가를 설치하지 않는다.
