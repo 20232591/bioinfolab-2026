@@ -2,34 +2,35 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## What this repository is
+# 이 저장소의 규칙
 
-A student's weekly lab repository for a bioinformatics lab course (생물정보학실험), run in GitHub Codespaces. There is no build system, package manager, linter, or test suite — work consists of small standalone Bash and Python scripts that process FASTA/text files. All docs, comments, and program output are in Korean; keep new content in Korean to match.
+## 이 저장소는
+생물정보학실험 수업의 실습 저장소이다. 주차별로 labNN 폴더가 있다.
 
-## Layout and conventions
+## 실행 방법
+주차 폴더에서 실행한다. 경로는 주차 폴더 기준이다.
 
-- `labNN/` — one folder per week, created by copying `lab-template/` (`cp -r lab-template labNN`). Each has:
-  - `data/` input data (FASTA etc.), `doc/` reports and result files (`.tsv`, `.md`), `src/` the student's scripts.
-- `resources/` — instructor-provided sample data (`resources/data/`) and example scripts (`resources/src/`).
-- Scripts are run **from the lab folder**, with paths relative to it, e.g.:
-  ```
-  cd lab07
-  python3 src/summary.py data/seqs.fasta doc/summary.tsv
-  bash src/gc.sh data/seqs.fasta
-  ```
-- Scripts take file paths via `sys.argv` / `$1`; there is no argparse or packaging.
-- Students often record run commands and outputs as trailing `#` comments at the bottom of scripts (assignment answers). Preserve these when editing.
-- Each week's work is committed with messages like `lab07 완료` / `N번 전`.
+```
+cd lab07
+python3 src/summary.py data/seqs.fasta doc/summary.tsv
 
-## Python code (lab07 onward)
+cd ../lab05
+bash src/countseq.sh data/seqs.fasta
+```
 
-From lab07 the FASTA logic is centralized in `lab07/src/fasta.py` (`read_fasta`, `write_fasta`, `gc_content`, `reverse_complement`, `length_stats`; documented in `lab07/src/README.md`). Other lab07 scripts import it with `from fasta import ...`, so they must be run as `python3 src/<script>.py` (the script's directory is on `sys.path`). Note `read_fasta` uppercases every line, including header names. Running `python3 src/fasta.py <file>` also runs its built-in assert self-test. lab06 uses the earlier style where each script duplicates its own FASTA parsing.
+테스트 프레임워크는 없다. `python3 src/fasta.py data/lower.fasta` 가 assert 테스트를 겸한다.
 
-Keep code at a beginner level consistent with the course (plain loops, dicts, `open`), not idiomatic-advanced Python or third-party libraries.
-
-## Environment
-
-- Dev containers in `.devcontainer/` are chosen per week: `1-basic` (weeks 02–07, Python + shell), `2-conda` (micromamba), `3-seq` (seqkit, blast, mafft, iqtree, fastqc, fastp), `4-genome` (adds shovill, prokka). `.devcontainer/check.sh` prints which tools are present.
-- `$MYHOME` is the workspace root; plain `cd` returns there.
-- Don't install tools yourself (except in the conda week, where installing is the assignment).
-- Sequencing reads (`*.fastq*`, `*.sra`) and assembly/annotation output dirs (`shovill_out/`, `prokka_out/`, …) are gitignored; re-download data with `wget` rather than committing it.
+## 코드를 쓸 때
+- FASTA 파일은 lab07/src/fasta.py 의 read_fasta 로 읽는다.
+  - `from fasta import ...` 는 `lab07/src/` 안에서만 된다. 다른 주차에는 `fasta.py` 가 없다.
+  - read_fasta 는 헤더(서열 이름)까지 대문자로 바꾼다.
+  - 예외: lab05·lab06 스크립트, lab07 의 `filter.py`·`fgc.py`·`fseqlen.py` 는 직접 읽기·함수 정의 연습용이다. read_fasta 로 바꾸지 않는다.
+- 새 라이브러리(Biopython 등)를 쓰기 전에 먼저 물어본다.
+- 주석은 한국어로 쓴다.
+- seqkit, blast 등이 없으면 설치하지 말고 알린다 (저장소 루트에서 `bash .devcontainer/check.sh` 로 확인). conda 실습 주차만 예외.
+-코드 수정 후에는 항상 제대로 돌아가는지 테스트 코드를 실행한다.
+## 하지 말 것
+- rm 으로 파일을 지우지 않는다.
+- pip install 로 무언가를 설치하지 않는다.
+- git 명령어를 실행하지 않는다.
+- 스크립트 아래쪽의 `#` 주석(실행 결과, 과제 답안)을 지우거나 고치지 않는다.
