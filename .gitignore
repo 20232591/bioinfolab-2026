@@ -26,3 +26,6 @@ __pycache__/
 # 운영체제
 .DS_Store
 Thumbs.db
+lab10/data/test3.fa
+lab11/doc/*.html
+lab11/doc/*.zip
